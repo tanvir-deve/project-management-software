@@ -31,6 +31,10 @@ const DailyClass = () => {
       });
   };
 
+  const handleDelete = (id) => {
+    axios.post("http://localhost:8000/dailyclass/delete", { id });
+  };
+
   return (
     <div>
       <Row>
@@ -84,6 +88,7 @@ const DailyClass = () => {
                 <th>Batch </th>
                 <th>Time</th>
                 <th>Room</th>
+                <th>Delete</th>
               </tr>
             </thead>
             {data.map((item) => (
@@ -92,6 +97,11 @@ const DailyClass = () => {
                   <td>{item.batch}</td>
                   <td>{item.time}</td>
                   <td>{item.room}</td>
+                  <td>
+                    <Button onClick={() => handleDelete(item._id)} variant="danger">
+                      Delete
+                    </Button>
+                  </td>
                 </tr>
               </tbody>
             ))}

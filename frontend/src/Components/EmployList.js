@@ -37,6 +37,12 @@ const EmployList = () => {
       });
   };
 
+  const handleDelete = (id) => {
+    axios.post("http://localhost:8000/employee/delete", {
+      id,
+    });
+  };
+
   return (
     <div>
       <Row>
@@ -111,6 +117,7 @@ const EmployList = () => {
                 <th>Office Time</th>
                 <th>Off Day</th>
                 <th>Phone</th>
+                <th>Delete</th>
               </tr>
             </thead>
             {data.map((item) => (
@@ -121,6 +128,11 @@ const EmployList = () => {
                   <td>{item.officetime}</td>
                   <td>{item.offday}</td>
                   <td>{item.phone}</td>
+                  <td>
+                    <Button onClick={() => handleDelete(item._id)} variant="danger">
+                      Delete
+                    </Button>
+                  </td>
                 </tr>
               </tbody>
             ))}

@@ -19,4 +19,14 @@ dailyclassRouter.get("/", async (req, res) => {
   res.send(data);
 });
 
+dailyclassRouter.post("/delete", (req, res) => {
+  DailyClass.findByIdAndDelete(req.body.id, function (err, docs) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("Deleted : ", docs);
+    }
+  });
+});
+
 export default dailyclassRouter;
